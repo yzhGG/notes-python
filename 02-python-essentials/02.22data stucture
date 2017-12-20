@@ -1,0 +1,43 @@
+#这段代码只是简单的测试下github desktop的用法
+#导入图形处理界面模块
+import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+
+
+#定义glabal variabls
+img_width = 1521
+img_height = 1818
+image =simplegui._LocalImage("http://commondatastorage.googleapis.com/codeskulptor-assets/gutenberg.jpg")
+scale = 3
+can_width = img_width // scale
+can_height = img_height // scale
+
+#magnifier
+mag_size = 100
+mag_pos =  [can_width // 2, can_height // 2]
+
+
+#定义事件处理函数
+def click(pos):
+    global mag_pos
+    mag_pos = list(pos)
+
+
+def draw(canvas):
+    canvas.draw_image(image, (img_width / 2, img_height / 2), (img_width, img_height), \
+                      (can_width / 2, can_height / 2), (can_width, can_height))
+
+
+# create frame
+frame = simplegui.create_frame("Calculator", 400, 300)
+frame.set_canvas_background('white')
+frame.set_mouseclick_handler(click)
+frame.set_draw_handler(draw)
+
+
+# register draw handler
+
+
+frame.set_mouseclick_handler(click)
+
+# start frame
+frame.start()
